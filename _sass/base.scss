@@ -1,6 +1,40 @@
 $font-serif: 'Noto Serif SC', 'Songti SC', 'STSong', 'SimSun', serif;
 $font-sans-serif: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans SC', sans-serif;
 
+:root {
+  --font-serif: #{$font-serif};
+  --font-sans-serif: #{$font-sans-serif};
+
+  --color-bg-body: #EFEFF0;
+  --color-bg-card: #F3F5F3E6;
+  --color-bg-card-hover: #F3F5F3;
+  --color-bg-card-item: #FCFCFCD9;
+  --color-bg-code: #F3F5F3;
+  
+  --color-text-primary: #473D40;
+  --color-text-secondary: #5a5a58;
+  --color-text-muted: #847E75;
+  --color-text-light: #8a8a88;
+  --color-text-accent: #B9AEA6;
+  --color-text-deep: #3a3a38;
+  --color-text-link: #8a6d5f;
+
+  --color-border-base: #d8d8d6;
+  --color-border-light: #D8D4C9;
+  --color-border-extra-light: #e6e6e4;
+  --color-border-inner: rgba(0, 0, 0, 0.08);
+  
+  --color-selection-bg: #EECFC4;
+  --color-selection-text: #473D40;
+  --color-link-border-hover: #EECFC4;
+  --color-code-bg: rgba(71, 61, 64, 0.06);
+  --color-blockquote-bg: rgba(185, 174, 166, 0.06);
+
+  --shadow-card: 0 24px 48px -16px rgba(71, 61, 64, 0.08);
+  --shadow-card-item: 0 2px 4px rgba(71, 61, 64, 0.02);
+  --shadow-card-hover: 0 12px 24px -8px rgba(71, 61, 64, 0.06);
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -8,18 +42,18 @@ $font-sans-serif: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sa
 }
 
 body {
-  background-color: #EFEFF0;
+  background-color: var(--color-bg-body);
   background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
   background-blend-mode: multiply;
   background-attachment: fixed;
-  font-family: $font-sans-serif;
+  font-family: var(--font-sans-serif);
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   min-height: 100vh;
   padding: 2rem 1.5rem;
-  color: #847E75;
+  color: var(--color-text-muted);
   letter-spacing: 0.01em;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
@@ -36,9 +70,9 @@ p {
 .card-blog {
   max-width: 1200px;
   width: 100%;
-  background: #F3F5F3E6;
-  border: 1px solid #d8d8d6;
-  box-shadow: 0 24px 48px -16px rgba(71, 61, 64, 0.08);
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border-base);
+  box-shadow: var(--shadow-card);
   padding: 3rem 2.5rem;
   position: relative;
 }
@@ -50,7 +84,7 @@ p {
   left: 20px;
   right: 20px;
   bottom: 20px;
-  border: 1px solid rgba(0, 0, 0, 0.08);
+  border: 1px solid var(--color-border-inner);
   pointer-events: none;
   z-index: 1;
 }
@@ -58,10 +92,10 @@ p {
 .card-blog::after {
   content: '';
   position: absolute;
-  inset: 0; /* 铺满整个卡片 */
+  inset: 0;
   background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
-  pointer-events: none; /* 让鼠标点击能穿透噪点层 */
-  z-index: 0; /* 放在最底层 */
+  pointer-events: none;
+  z-index: 0;
 }
 
 .card-blog > * {
@@ -73,7 +107,7 @@ p {
   display: flex;
   justify-content: space-between;
   align-items: flex-end;
-  border-bottom: 1px solid #D8D4C9;
+  border-bottom: 1px solid var(--color-border-light);
   padding-bottom: 1.5rem;
   margin-bottom: 2.5rem;
   flex-wrap: wrap;
@@ -86,19 +120,19 @@ p {
   letter-spacing: -0.03em;
   line-height: 1;
   text-transform: uppercase;
-  color: #473D40;
-  font-family: $font-serif;
+  color: var(--color-text-primary);
+  font-family: var(--font-serif);
   margin-bottom: 0.4rem;
 }
 
 .name-title h1 span {
   font-weight: 300;
-  color: #B9AEA6;
+  color: var(--color-text-accent);
   letter-spacing: 0.1em;
   font-size: 0.9rem;
   display: block;
   margin-top: 0.3rem;
-  font-family: $font-sans-serif;
+  font-family: var(--font-sans-serif);
   text-transform: uppercase;
 }
 
@@ -110,21 +144,21 @@ p {
 }
 
 .blog-card {
-  background: #FCFCFCD9;
-  border: 1px solid #D8D4C9;
+  background: var(--color-bg-card-item);
+  border: 1px solid var(--color-border-light);
   padding: 1.8rem 1.8rem 1.6rem 1.8rem;
   transition: all 0.3s ease;
   display: flex;
   flex-direction: column;
-  box-shadow: 0 2px 4px rgba(71, 61, 64, 0.02);
+  box-shadow: var(--shadow-card-item);
   aspect-ratio: 1.75 / 1;
   max-height: 220px;
 }
 
 .blog-card:hover {
-  border-color: #B9AEA6;
-  background: #F3F5F3;
-  box-shadow: 0 12px 24px -8px rgba(71, 61, 64, 0.06);
+  border-color: var(--color-text-accent);
+  background: var(--color-bg-card-hover);
+  box-shadow: var(--shadow-card-hover);
 }
 
 .card-meta {
@@ -135,14 +169,14 @@ p {
   font-size: 0.65rem;
   text-transform: uppercase;
   letter-spacing: 0.2em;
-  color: #8a8a88;
-  border-bottom: 1px solid #e6e6e4;
+  color: var(--color-text-light);
+  border-bottom: 1px solid var(--color-border-extra-light);
   padding-bottom: 0.75rem;
   font-weight: 400;
 }
 
 .card-meta .date {
-  color: #5a5a58;
+  color: var(--color-text-secondary);
   font-weight: 300;
 }
 
@@ -151,15 +185,15 @@ p {
   font-weight: 400;
   line-height: 1.3;
   letter-spacing: -0.01em;
-  color: #473D40;
+  color: var(--color-text-primary);
   margin-bottom: 0.8rem;
-  font-family: $font-serif;
+  font-family: var(--font-serif);
 }
 
 .blog-card p {
   font-size: 0.9rem;
   line-height: 1.7;
-  color: #847E75;
+  color: var(--color-text-muted);
   font-weight: 400;
   margin-bottom: 1.5rem;
   letter-spacing: 0.01em;
@@ -179,12 +213,12 @@ p {
 }
 
 .blog-card a:hover {
-  border-bottom-color: #EECFC4; 
+  border-bottom-color: var(--color-link-border-hover); 
 }
 
 a:focus-visible,
 button:focus-visible {
-  outline: 1px solid #B9AEA6;
+  outline: 1px solid var(--color-text-accent);
   outline-offset: 4px;
 }
 
@@ -194,22 +228,22 @@ button:focus-visible {
   letter-spacing: 0.3em;
   display: flex;
   justify-content: space-between;
-  border-top: 1px solid #e6e6e4;
+  border-top: 1px solid var(--color-border-extra-light);
   padding-top: 0.9rem;
   font-weight: 300;
 }
 
 .card-footer span:first-child {
-  color: #3a3a38;
+  color: var(--color-text-deep);
 }
 
 .card-meta, .card-footer, .blog-footer, .footer-left span, .footer-right {
-  color: #B9AEA6;
-  font-family: $font-sans-serif;
+  color: var(--color-text-accent);
+  font-family: var(--font-sans-serif);
 }
 
 .blog-footer {
-  border-top: 1px solid #D8D4C9;
+  border-top: 1px solid var(--color-border-light);
   padding-top: 2rem;
   margin-top: 2rem;
   display: flex;
@@ -230,7 +264,7 @@ button:focus-visible {
 
 .footer-right {
   font-weight: 300;
-  border-left: 1px solid #D8D4C9;
+  border-left: 1px solid var(--color-border-light);
   padding-left: 2rem;
 }
 
@@ -246,7 +280,7 @@ button:focus-visible {
   display: block;
   height: 1px;
   width: 40px;
-  background: #D8D4C9;
+  background: var(--color-border-light);
 }
 
 @media (max-width: 800px) {
@@ -296,6 +330,6 @@ button:focus-visible {
 }
 
 ::selection {
-  background: #EECFC4;
-  color: #473D40;
+  background: var(--color-selection-bg);
+  color: var(--color-selection-text);
 }

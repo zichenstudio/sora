@@ -7,22 +7,22 @@
 }
 
 .post-card .post-title {
-  font-family: $font-serif;
+  font-family: var(--font-serif);
   font-size: 2rem;
   font-weight: 600;
   line-height: 1.25;
   letter-spacing: -0.02em;
-  color: #473D40;
+  color: var(--color-text-primary);
   margin: 0.4rem 0 1.5rem;
   padding-bottom: 1.2rem;
-  border-bottom: 1px solid #e6e6e4;
+  border-bottom: 1px solid var(--color-border-extra-light);
 }
 
 .post-content {
-  font-family: $font-serif;
+  font-family: var(--font-serif);
   font-size: 1rem;
   line-height: 1.85;
-  color: #5a5a58;
+  color: var(--color-text-secondary);
   letter-spacing: 0.01em;
   min-width: 0;
   overflow-wrap: break-word;
@@ -40,8 +40,8 @@
 .post-content h4,
 .post-content h5,
 .post-content h6 {
-  font-family: $font-serif;
-  color: #473D40;
+  font-family: var(--font-serif);
+  color: var(--color-text-primary);
   line-height: 1.35;
   font-weight: 600;
   text-wrap-style: balance;
@@ -56,7 +56,7 @@
   font-size: 1.45rem;
   margin-top: 1.9rem;
   padding-bottom: 0.4rem;
-  border-bottom: 1px solid #e6e6e4;
+  border-bottom: 1px solid var(--color-border-extra-light);
 }
 
 .post-content h3 {
@@ -73,7 +73,7 @@
 .post-content h6 {
   font-size: 0.95rem;
   margin-top: 1.2rem;
-  color: #847E75;
+  color: var(--color-text-muted);
 }
 
 .post-content p {
@@ -81,16 +81,16 @@
 }
 
 .post-content a {
-  color: #8a6d5f;
+  color: var(--color-text-link);
   text-decoration: none;
-  border-bottom: 1px solid #EECFC4;
+  border-bottom: 1px solid var(--color-link-border-hover);
   transition: border-color 0.2s, color 0.2s;
   overflow-wrap: break-word;
 }
 
 .post-content a:hover {
-  color: #473D40;
-  border-bottom-color: #473D40;
+  color: var(--color-text-primary);
+  border-bottom-color: var(--color-text-primary);
 }
 
 .post-content ul,
@@ -108,19 +108,19 @@
 }
 
 .post-content ul li::marker {
-  color: #B9AEA6;
+  color: var(--color-text-accent);
 }
 
 .post-content ol li::marker {
-  color: #B9AEA6;
+  color: var(--color-text-accent);
 }
 
 .post-content blockquote {
   margin: 1.4em 0;
   padding: 0.4em 1.2em;
-  border-left: 2px solid #B9AEA6;
-  color: #847E75;
-  background: rgba(185, 174, 166, 0.06);
+  border-left: 2px solid var(--color-text-accent);
+  color: var(--color-text-muted);
+  background: var(--color-blockquote-bg);
 }
 
 .post-content blockquote p {
@@ -131,10 +131,10 @@
   font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
   font-size: 0.86em;
   padding: 0.15em 0.4em;
-  background: rgba(71, 61, 64, 0.06);
-  border: 1px solid #e6e6e4;
+  background: var(--color-code-bg);
+  border: 1px solid var(--color-border-extra-light);
   border-radius: 2px;
-  color: #473D40;
+  color: var(--color-text-primary);
   overflow-wrap: break-word;
 }
 
@@ -142,14 +142,14 @@
   font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
   font-size: 0.84rem;
   line-height: 1.7;
-  background: #F3F5F3;
-  border: 1px solid #e6e6e4;
+  background: var(--color-bg-code);
+  border: 1px solid var(--color-border-extra-light);
   padding: 1rem 1.2rem;
   margin: 1.4em 0;
   overflow-x: auto;
   max-width: 100%;
   -webkit-overflow-scrolling: touch;
-  color: #473D40;
+  color: var(--color-text-primary);
 }
 
 .post-content pre code {
@@ -176,15 +176,15 @@
 
 .post-content th,
 .post-content td {
-  border: 1px solid #e6e6e4;
+  border: 1px solid var(--color-border-extra-light);
   padding: 0.5em 0.9em;
   text-align: left;
 }
 
 .post-content th {
-  background: #F3F5F3;
+  background: var(--color-bg-code);
   font-weight: 600;
-  color: #473D40;
+  color: var(--color-text-primary);
 }
 
 .post-content img {
@@ -192,12 +192,12 @@
   height: auto;
   display: block;
   margin: 1.4em auto;
-  border: 1px solid #e6e6e4;
+  border: 1px solid var(--color-border-extra-light);
 }
 
 .post-content hr {
   border: none;
-  border-top: 1px solid #D8D4C9;
+  border-top: 1px solid var(--color-border-light);
   margin: 2em 0;
 }
 
@@ -207,8 +207,8 @@
 
 .post-content .footnotes {
   font-size: 0.85rem;
-  color: #847E75;
-  border-top: 1px solid #e6e6e4;
+  color: var(--color-text-muted);
+  border-top: 1px solid var(--color-border-extra-light);
   margin-top: 2.4em;
   padding-top: 1em;
 }
