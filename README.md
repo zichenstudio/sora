@@ -5,7 +5,7 @@
 
 **Sora** 是一个极简、冷峻、注重文字阅读体验的 Jekyll 主题。剔除一切多余的装饰，只留下骨骼般的结构与纯粹的内容。
 
-![Sora Preview](https://via.placeholder.com/1200x600/F3F5F3/473D40?text=Sora+Theme+Preview)
+![Sora Preview](./images/preview.png)
 
 ## Features (特性)
 
