@@ -1,0 +1,301 @@
+$font-serif: 'Noto Serif SC', 'Songti SC', 'STSong', 'SimSun', serif;
+$font-sans-serif: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sans GB', 'Microsoft YaHei', 'Noto Sans SC', sans-serif;
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-color: #EFEFF0;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
+  background-blend-mode: multiply;
+  background-attachment: fixed;
+  font-family: $font-sans-serif;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding: 2rem 1.5rem;
+  color: #847E75;
+  letter-spacing: 0.01em;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+h1, h2, h3 {
+  text-wrap-style: balance;
+}
+
+p {
+  text-wrap-style: pretty;
+}
+
+.card-blog {
+  max-width: 1200px;
+  width: 100%;
+  background: #F3F5F3E6;
+  border: 1px solid #d8d8d6;
+  box-shadow: 0 24px 48px -16px rgba(71, 61, 64, 0.08);
+  padding: 3rem 2.5rem;
+  position: relative;
+}
+
+.card-blog::before {
+  content: '';
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  right: 20px;
+  bottom: 20px;
+  border: 1px solid rgba(0, 0, 0, 0.08);
+  pointer-events: none;
+  z-index: 1;
+}
+
+.card-blog::after {
+  content: '';
+  position: absolute;
+  inset: 0; /* 铺满整个卡片 */
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
+  pointer-events: none; /* 让鼠标点击能穿透噪点层 */
+  z-index: 0; /* 放在最底层 */
+}
+
+.card-blog > * {
+  position: relative;
+  z-index: 2;
+}
+
+.blog-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  border-bottom: 1px solid #D8D4C9;
+  padding-bottom: 1.5rem;
+  margin-bottom: 2.5rem;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+}
+
+.name-title h1 {
+  font-size: 3.2rem;
+  font-weight: 600;
+  letter-spacing: -0.03em;
+  line-height: 1;
+  text-transform: uppercase;
+  color: #473D40;
+  font-family: $font-serif;
+  margin-bottom: 0.4rem;
+}
+
+.name-title h1 span {
+  font-weight: 300;
+  color: #B9AEA6;
+  letter-spacing: 0.1em;
+  font-size: 0.9rem;
+  display: block;
+  margin-top: 0.3rem;
+  font-family: $font-sans-serif;
+  text-transform: uppercase;
+}
+
+.blog-grid {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: 1.75rem;
+  margin-bottom: 3rem;
+}
+
+.blog-card {
+  background: #FCFCFCD9;
+  border: 1px solid #D8D4C9;
+  padding: 1.8rem 1.8rem 1.6rem 1.8rem;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 2px 4px rgba(71, 61, 64, 0.02);
+  aspect-ratio: 1.75 / 1;
+  max-height: 220px;
+}
+
+.blog-card:hover {
+  border-color: #B9AEA6;
+  background: #F3F5F3;
+  box-shadow: 0 12px 24px -8px rgba(71, 61, 64, 0.06);
+}
+
+.card-meta {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 1.2rem;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+  color: #8a8a88;
+  border-bottom: 1px solid #e6e6e4;
+  padding-bottom: 0.75rem;
+  font-weight: 400;
+}
+
+.card-meta .date {
+  color: #5a5a58;
+  font-weight: 300;
+}
+
+.blog-card h2 {
+  font-size: 1.4rem;
+  font-weight: 400;
+  line-height: 1.3;
+  letter-spacing: -0.01em;
+  color: #473D40;
+  margin-bottom: 0.8rem;
+  font-family: $font-serif;
+}
+
+.blog-card p {
+  font-size: 0.9rem;
+  line-height: 1.7;
+  color: #847E75;
+  font-weight: 400;
+  margin-bottom: 1.5rem;
+  letter-spacing: 0.01em;
+  flex: 1;
+  display: -webkit-box;
+  -webkit-line-clamp: 2;
+  -webkit-box-orient: vertical;
+  line-clamp: 2;
+  overflow: hidden;
+}
+
+.blog-card a {
+  text-decoration: none;
+  color: inherit;
+  border-bottom: 1px solid transparent;
+  transition: border-color 0.2s;
+}
+
+.blog-card a:hover {
+  border-bottom-color: #EECFC4; 
+}
+
+a:focus-visible,
+button:focus-visible {
+  outline: 1px solid #B9AEA6;
+  outline-offset: 4px;
+}
+
+.card-footer {
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  letter-spacing: 0.3em;
+  display: flex;
+  justify-content: space-between;
+  border-top: 1px solid #e6e6e4;
+  padding-top: 0.9rem;
+  font-weight: 300;
+}
+
+.card-footer span:first-child {
+  color: #3a3a38;
+}
+
+.card-meta, .card-footer, .blog-footer, .footer-left span, .footer-right {
+  color: #B9AEA6;
+  font-family: $font-sans-serif;
+}
+
+.blog-footer {
+  border-top: 1px solid #D8D4C9;
+  padding-top: 2rem;
+  margin-top: 2rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  font-size: 0.7rem;
+  text-transform: uppercase;
+  letter-spacing: 0.2em;
+}
+
+.footer-left {
+  display: flex;
+  gap: 2rem;
+  font-weight: 300;
+}
+
+.footer-right {
+  font-weight: 300;
+  border-left: 1px solid #D8D4C9;
+  padding-left: 2rem;
+}
+
+.watermark-line {
+  display: flex;
+  gap: 0.5rem;
+  align-items: center;
+  margin-top: 1rem;
+  justify-content: flex-end;
+}
+
+.watermark-line i {
+  display: block;
+  height: 1px;
+  width: 40px;
+  background: #D8D4C9;
+}
+
+@media (max-width: 800px) {
+  .card-blog {
+    padding: 2rem 1.5rem;
+  }
+
+  .name-title h1 {
+    font-size: 2.4rem;
+  }
+
+  .blog-grid {
+    gap: 1.5rem;
+  }
+
+  .blog-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .footer-left {
+    flex-direction: column;
+    gap: 0.7rem;
+  }
+
+  .footer-right {
+    border-left: none;
+    padding-left: 0;
+  }
+}
+
+@media (max-width: 500px) {
+  .card-blog::before {
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+  }
+
+  .name-title h1 {
+    font-size: 2rem;
+  }
+
+  .blog-card {
+    padding: 1.3rem;
+  }
+}
+
+::selection {
+  background: #EECFC4;
+  color: #473D40;
+}

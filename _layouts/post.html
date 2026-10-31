@@ -1,0 +1,18 @@
+---
+layout: default
+---
+
+<article class="blog-card post-card">
+  <div class="card-meta">
+    <span class="card-tags">
+      {% for tag in page.tags %}<span class="tag">{{ tag }}</span>{% endfor %}
+    </span>
+    <span class="date">{{ page.date | date: "%d.%m.%Y" }}</span>
+  </div>
+
+  <h1 class="post-title">{{ page.title }}</h1>
+
+  <div class="post-content">
+    {{ content }}
+  </div>
+</article>

@@ -1,0 +1,40 @@
+---
+layout: default
+title: 首页
+---
+
+{% for post in site.posts %}
+{% if post.reading_time_seconds %}
+  {% assign total_seconds = post.reading_time_seconds %}
+{% else %}
+  {% assign words = post.content | number_of_words %}
+  {% assign total_seconds = words | times: 60.0 | divided_by: 200 | round %}
+  {% if total_seconds < 1 %}{% assign total_seconds = 1 %}{% endif %}
+{% endif %}
+<article class="blog-card">
+  <div class="card-meta">
+    <span><span class="card-tags">
+      {% for tag in post.tags %}
+        {{ tag }}
+      {% endfor %}
+    </span></span>
+    <span class="date">{{ post.date | date: "%d.%m.%Y" }}</span>
+  </div>
+  <h2><a href="{{ post.url | relative_url }}">{{ post.title }}</a></h2>
+  <p>{{ post.description }}</p>
+  <div class="card-footer">
+    <span>
+      {% assign author = post.author | default: site.author %}
+      {{ author }}
+    </span>
+    <span>
+      {% if total_seconds < 60 %}
+        {{ total_seconds }}s
+      {% else %}
+        {% assign minutes = total_seconds | divided_by: 60.0 %}
+        {{ minutes | round: 1 }}min
+      {% endif %} read
+        </span>
+    </div>
+</article>
+{% endfor %}

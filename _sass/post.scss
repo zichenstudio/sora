@@ -1,0 +1,219 @@
+@use "base" as *;
+
+.post-card {
+  aspect-ratio: auto;
+  max-height: none;
+  padding: 2.5rem 2.5rem 2rem;
+}
+
+.post-card .post-title {
+  font-family: $font-serif;
+  font-size: 2rem;
+  font-weight: 600;
+  line-height: 1.25;
+  letter-spacing: -0.02em;
+  color: #473D40;
+  margin: 0.4rem 0 1.5rem;
+  padding-bottom: 1.2rem;
+  border-bottom: 1px solid #e6e6e4;
+}
+
+.post-content {
+  font-family: $font-serif;
+  font-size: 1rem;
+  line-height: 1.85;
+  color: #5a5a58;
+  letter-spacing: 0.01em;
+  min-width: 0;
+  overflow-wrap: break-word;
+  word-break: break-word;
+  hyphens: auto;
+}
+
+.post-content > * + * {
+  margin-top: 1.1em;
+}
+
+.post-content h1,
+.post-content h2,
+.post-content h3,
+.post-content h4,
+.post-content h5,
+.post-content h6 {
+  font-family: $font-serif;
+  color: #473D40;
+  line-height: 1.35;
+  font-weight: 600;
+  text-wrap-style: balance;
+}
+
+.post-content h1 {
+  font-size: 1.8rem;
+  margin-top: 2rem;
+}
+
+.post-content h2 {
+  font-size: 1.45rem;
+  margin-top: 1.9rem;
+  padding-bottom: 0.4rem;
+  border-bottom: 1px solid #e6e6e4;
+}
+
+.post-content h3 {
+  font-size: 1.2rem;
+  margin-top: 1.6rem;
+}
+
+.post-content h4 {
+  font-size: 1.05rem;
+  margin-top: 1.4rem;
+}
+
+.post-content h5,
+.post-content h6 {
+  font-size: 0.95rem;
+  margin-top: 1.2rem;
+  color: #847E75;
+}
+
+.post-content p {
+  text-wrap-style: pretty;
+}
+
+.post-content a {
+  color: #8a6d5f;
+  text-decoration: none;
+  border-bottom: 1px solid #EECFC4;
+  transition: border-color 0.2s, color 0.2s;
+  overflow-wrap: break-word;
+}
+
+.post-content a:hover {
+  color: #473D40;
+  border-bottom-color: #473D40;
+}
+
+.post-content ul,
+.post-content ol {
+  padding-left: 1.5em;
+}
+
+.post-content li + li {
+  margin-top: 0.35em;
+}
+
+.post-content li > ul,
+.post-content li > ol {
+  margin-top: 0.35em;
+}
+
+.post-content ul li::marker {
+  color: #B9AEA6;
+}
+
+.post-content ol li::marker {
+  color: #B9AEA6;
+}
+
+.post-content blockquote {
+  margin: 1.4em 0;
+  padding: 0.4em 1.2em;
+  border-left: 2px solid #B9AEA6;
+  color: #847E75;
+  background: rgba(185, 174, 166, 0.06);
+}
+
+.post-content blockquote p {
+  margin: 0.4em 0;
+}
+
+.post-content :not(pre) > code {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 0.86em;
+  padding: 0.15em 0.4em;
+  background: rgba(71, 61, 64, 0.06);
+  border: 1px solid #e6e6e4;
+  border-radius: 2px;
+  color: #473D40;
+  overflow-wrap: break-word;
+}
+
+.post-content pre {
+  font-family: "SFMono-Regular", Consolas, "Liberation Mono", Menlo, monospace;
+  font-size: 0.84rem;
+  line-height: 1.7;
+  background: #F3F5F3;
+  border: 1px solid #e6e6e4;
+  padding: 1rem 1.2rem;
+  margin: 1.4em 0;
+  overflow-x: auto;
+  max-width: 100%;
+  -webkit-overflow-scrolling: touch;
+  color: #473D40;
+}
+
+.post-content pre code {
+  font-family: inherit;
+  font-size: inherit;
+  padding: 0;
+  background: none;
+  border: none;
+  white-space: pre;
+  overflow-wrap: normal;
+  word-break: normal;
+}
+
+.post-content table {
+  width: 100%;
+  max-width: 100%;
+  border-collapse: collapse;
+  font-size: 0.9rem;
+  display: block;
+  overflow-x: auto;
+  margin: 1.4em 0;
+  white-space: nowrap;
+}
+
+.post-content th,
+.post-content td {
+  border: 1px solid #e6e6e4;
+  padding: 0.5em 0.9em;
+  text-align: left;
+}
+
+.post-content th {
+  background: #F3F5F3;
+  font-weight: 600;
+  color: #473D40;
+}
+
+.post-content img {
+  max-width: 100%;
+  height: auto;
+  display: block;
+  margin: 1.4em auto;
+  border: 1px solid #e6e6e4;
+}
+
+.post-content hr {
+  border: none;
+  border-top: 1px solid #D8D4C9;
+  margin: 2em 0;
+}
+
+.post-content .task-list-item {
+  list-style: none;
+}
+
+.post-content .footnotes {
+  font-size: 0.85rem;
+  color: #847E75;
+  border-top: 1px solid #e6e6e4;
+  margin-top: 2.4em;
+  padding-top: 1em;
+}
+
+.post-content > * {
+  max-width: 100%;
+  min-width: 0;
+}
