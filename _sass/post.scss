@@ -4,6 +4,10 @@
   aspect-ratio: auto;
   max-height: none;
   padding: 2.5rem 2.5rem 2rem;
+  display: block;
+  width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
 }
 
 .post-card .post-title {
@@ -148,6 +152,8 @@
   margin: 1.4em 0;
   overflow-x: auto;
   max-width: 100%;
+  min-width: 0;
+  box-sizing: border-box;
   -webkit-overflow-scrolling: touch;
   color: var(--color-text-primary);
 }
@@ -172,6 +178,8 @@
   overflow-x: auto;
   margin: 1.4em 0;
   white-space: nowrap;
+  box-sizing: border-box;
+  min-width: 0;
 }
 
 .post-content th,
@@ -213,7 +221,20 @@
   padding-top: 1em;
 }
 
-.post-content > * {
-  max-width: 100%;
-  min-width: 0;
+@media (max-width: 500px) {
+  .post-card {
+    padding: 1.3rem 1.3rem 1.6rem;
+  }
+  .post-card .post-title {
+    font-size: 1.5rem;
+  }
+  .post-content {
+    font-size: 0.95rem;
+  }
+}
+
+@media (max-width: 800px) {
+  .post-card {
+    padding: 1.8rem 1.5rem 1.6rem;
+  }
 }
