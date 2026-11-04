@@ -13,7 +13,7 @@ $font-sans-serif: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sa
   
   --color-text-primary: #473D40;
   --color-text-secondary: #5a5a58;
-  --color-text-muted: #847E75;
+  --color-text-muted: #5C5A60;
   --color-text-light: #8a8a88;
   --color-text-accent: #B9AEA6;
   --color-text-deep: #3a3a38;
@@ -247,7 +247,7 @@ p {
 }
 
 .blog-card p {
-  font-size: 0.9rem;
+  font-size: 1rem;
   line-height: 1.7;
   color: var(--color-text-muted);
   font-weight: 400;
