@@ -35,6 +35,61 @@ $font-sans-serif: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sa
   --shadow-card-hover: 0 12px 24px -8px rgba(71, 61, 64, 0.06);
 }
 
+@mixin dark-vars {
+  --color-bg-body: #1a1918;
+  --color-bg-card: #232120E6;
+  --color-bg-card-hover: #2a2726;
+  --color-bg-card-item: #2b2826D9;
+  --color-bg-code: #1e1c1b;
+
+  --color-text-primary: #E8E2DA;
+  --color-text-secondary: #C9C2B8;
+  --color-text-muted: #9a938a;
+  --color-text-light: #7a746c;
+  --color-text-accent: #B9AEA6;
+  --color-text-deep: #F0EAE2;
+  --color-text-link: #C9A08C;
+
+  --color-border-base: #3a3634;
+  --color-border-light: #3f3a36;
+  --color-border-extra-light: #333030;
+  --color-border-inner: rgba(255, 255, 255, 0.08);
+
+  --color-selection-bg: #5a4a44;
+  --color-selection-text: #F0EAE2;
+  --color-link-border-hover: #C9A08C;
+  --color-code-bg: rgba(232, 226, 218, 0.08);
+  --color-blockquote-bg: rgba(185, 174, 166, 0.08);
+
+  --shadow-card: 0 24px 48px -16px rgba(0, 0, 0, 0.6);
+  --shadow-card-item: 0 2px 4px rgba(0, 0, 0, 0.3);
+  --shadow-card-hover: 0 12px 24px -8px rgba(0, 0, 0, 0.5);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) {
+    @include dark-vars;
+  }
+  :root:not([data-theme="light"]) body {
+    background-blend-mode: screen;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+  }
+  :root:not([data-theme="light"]) .card-blog::after {
+    opacity: 0.04;
+  }
+}
+
+:root[data-theme="dark"] {
+  @include dark-vars;
+}
+:root[data-theme="dark"] body {
+  background-blend-mode: screen;
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
+}
+:root[data-theme="dark"] .card-blog::after {
+  opacity: 0.04;
+}
+
 * {
   margin: 0;
   padding: 0;
@@ -70,6 +125,7 @@ p {
 .card-blog {
   max-width: 1200px;
   width: 100%;
+  min-width: 0;
   background: var(--color-bg-card);
   border: 1px solid var(--color-border-base);
   box-shadow: var(--shadow-card);
@@ -332,4 +388,59 @@ button:focus-visible {
 ::selection {
   background: var(--color-selection-bg);
   color: var(--color-selection-text);
+}
+
+.theme-toggle {
+  position: fixed;
+  top: 1.5rem;
+  right: 1.5rem;
+  z-index: 100;
+  width: 2.4rem;
+  height: 2.4rem;
+  padding: 0;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  background: var(--color-bg-card);
+  border: 1px solid var(--color-border-base);
+  color: var(--color-text-muted);
+  cursor: pointer;
+  box-shadow: var(--shadow-card-item);
+  transition: color 0.25s, border-color 0.25s, background 0.25s, transform 0.15s;
+  will-change: transform;
+  -webkit-tap-highlight-color: transparent;
+}
+
+.theme-toggle:hover {
+  color: var(--color-text-primary);
+  border-color: var(--color-text-accent);
+  background: var(--color-bg-card-hover);
+  box-shadow: var(--shadow-card-hover);   /* 瞬间切换，不参与过渡 */
+}
+
+.theme-toggle:active {
+  transform: translateY(1px);
+}
+
+.theme-toggle .icon-sun,
+.theme-toggle .icon-moon {
+  position: absolute;
+  transition: opacity 0.25s, transform 0.35s;
+  will-change: opacity, transform;
+  backface-visibility: hidden;
+}
+
+.theme-toggle .icon-sun  { opacity: 1; transform: rotate(0) scale(1); }
+.theme-toggle .icon-moon { opacity: 0; transform: rotate(90deg) scale(0.6); }
+
+:root[data-theme="dark"] .theme-toggle .icon-sun  { opacity: 0; transform: rotate(-90deg) scale(0.6); }
+:root[data-theme="dark"] .theme-toggle .icon-moon { opacity: 1; transform: rotate(0) scale(1); }
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .theme-toggle .icon-sun  { opacity: 0; transform: rotate(-90deg) scale(0.6); }
+  :root:not([data-theme="light"]) .theme-toggle .icon-moon { opacity: 1; transform: rotate(0) scale(1); }
+}
+
+@media (max-width: 500px) {
+  .theme-toggle { top: 1rem; right: 1rem; width: 2.1rem; height: 2.1rem; }
 }
