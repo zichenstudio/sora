@@ -122,6 +122,11 @@ p {
   text-wrap-style: pretty;
 }
 
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
 .card-blog {
   max-width: 1200px;
   width: 100%;
