@@ -1,0 +1,87 @@
+---
+layout: default
+title: 标签
+permalink: /tags/
+---
+
+<style>
+.blog-grid .tag-card {
+  aspect-ratio: auto !important; 
+  max-height: none !important;   
+  height: fit-content;           
+  padding: 1.8rem 1.8rem 1.4rem 1.8rem;
+}
+
+.blog-grid .tag-title {
+  font-family: var(--font-serif);
+  font-size: 1.4rem;
+  font-weight: 400;
+  color: var(--color-text-primary);
+  margin-bottom: 0.8rem;
+  padding-bottom: 0.8rem;
+  border-bottom: 1px solid var(--color-border-extra-light);
+  overflow-wrap: break-word;
+  word-break: break-word;
+}
+
+.blog-grid .tag-post-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.6rem;
+}
+
+.blog-grid .tag-post-item {
+  display: flex;
+  justify-content: space-between;
+  align-items: baseline;
+  gap: 1rem;
+  color: var(--color-text-secondary);
+  transition: color 0.2s, padding-left 0.2s;
+}
+
+.blog-grid .tag-post-item:hover {
+  color: var(--color-text-link);
+  padding-left: 0.3rem;
+}
+
+.blog-grid .tag-post-title {
+  font-size: 0.95rem;
+  line-height: 1.5;
+  display: -webkit-box;
+  -webkit-line-clamp: 1; 
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+}
+
+.blog-grid .tag-post-date {
+  flex-shrink: 0;
+  font-size: 0.65rem;
+  text-transform: uppercase;
+  letter-spacing: 0.15em;
+  color: var(--color-text-light);
+}
+</style>
+
+{% assign sorted_tags = site.tags | sort %}
+{% for tag in sorted_tags %}
+  {% assign name = tag[0] %}
+  {% assign posts = tag[1] %}
+  
+  <div class="blog-card tag-card tags-page-card">
+    <div class="card-meta">
+      <span class="card-tags">TAG</span>
+      <span class="date">{{ posts.size }} 篇</span>
+    </div>
+
+    <h2 class="tag-title"># {{ name }}</h2>
+
+    <div class="tag-post-list">
+      {% for post in posts %}
+        <a class="tag-post-item" href="{{ post.url | relative_url }}">
+          <span class="tag-post-title">{{ post.title }}</span>
+          <span class="tag-post-date">{{ post.date | date: "%d.%m.%Y" }}</span>
+        </a>
+      {% endfor %}
+    </div>
+  </div>
+{% endfor %}
