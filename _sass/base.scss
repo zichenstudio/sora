@@ -10,7 +10,7 @@ $font-sans-serif: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sa
   --color-bg-card-hover: #F3F5F3;
   --color-bg-card-item: #FCFCFCD9;
   --color-bg-code: #F3F5F3;
-  
+
   --color-text-primary: #473D40;
   --color-text-secondary: #5a5a58;
   --color-text-muted: #5C5A60;
@@ -23,7 +23,7 @@ $font-sans-serif: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sa
   --color-border-light: #D8D4C9;
   --color-border-extra-light: #e6e6e4;
   --color-border-inner: rgba(0, 0, 0, 0.08);
-  
+
   --color-selection-bg: #EECFC4;
   --color-selection-text: #473D40;
   --color-link-border-hover: #EECFC4;
@@ -33,6 +33,18 @@ $font-sans-serif: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sa
   --shadow-card: 0 24px 48px -16px rgba(71, 61, 64, 0.08);
   --shadow-card-item: 0 2px 4px rgba(71, 61, 64, 0.02);
   --shadow-card-hover: 0 12px 24px -8px rgba(71, 61, 64, 0.06);
+
+  --paper-grain: rgba(0, 0, 0, 0.012);
+  --paper-grain-2: rgba(0, 0, 0, 0.008);
+  --emboss-highlight: rgba(255, 255, 255, 0.6);
+  --emboss-shadow: rgba(0, 0, 0, 0.04);
+  --card-edge: var(--color-border-base);
+  --card-radius: 2px;
+
+  --foil-from: #E8CBAF;
+  --foil-mid: #B8935E;
+  --foil-to: #D9B98C;
+  --foil-enabled: 0;
 }
 
 @mixin dark-vars {
@@ -46,7 +58,7 @@ $font-sans-serif: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sa
   --color-text-secondary: #C9C2B8;
   --color-text-muted: #9a938a;
   --color-text-light: #7a746c;
-  --color-text-accent: #B9AEA6;
+  --color-text-accent: #C9A88C;
   --color-text-deep: #F0EAE2;
   --color-text-link: #C9A08C;
 
@@ -64,30 +76,28 @@ $font-sans-serif: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sa
   --shadow-card: 0 24px 48px -16px rgba(0, 0, 0, 0.6);
   --shadow-card-item: 0 2px 4px rgba(0, 0, 0, 0.3);
   --shadow-card-hover: 0 12px 24px -8px rgba(0, 0, 0, 0.5);
+
+  --paper-grain: rgba(201, 160, 140, 0.03);
+  --paper-grain-2: rgba(232, 226, 218, 0.015);
+  --emboss-highlight: rgba(232, 226, 218, 0.08);
+  --emboss-shadow: rgba(0, 0, 0, 0.6);
+  --card-edge: #0f0e0d;
+  --card-radius: 2px;
+
+  --foil-from: #E8CBAF;
+  --foil-mid: #B8935E;
+  --foil-to: #D9B98C;
+  --foil-enabled: 1;
 }
 
 @media (prefers-color-scheme: dark) {
   :root:not([data-theme="light"]) {
     @include dark-vars;
   }
-  :root:not([data-theme="light"]) body {
-    background-blend-mode: screen;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
-  }
-  :root:not([data-theme="light"]) .card-blog::after {
-    opacity: 0.04;
-  }
 }
 
 :root[data-theme="dark"] {
   @include dark-vars;
-}
-:root[data-theme="dark"] body {
-  background-blend-mode: screen;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.03'/%3E%3C/svg%3E");
-}
-:root[data-theme="dark"] .card-blog::after {
-  opacity: 0.04;
 }
 
 * {
@@ -98,8 +108,21 @@ $font-sans-serif: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sa
 
 body {
   background-color: var(--color-bg-body);
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='200' height='200'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.8' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)' opacity='0.05'/%3E%3C/svg%3E");
-  background-blend-mode: multiply;
+  background-image:
+    repeating-linear-gradient(
+      45deg,
+      var(--paper-grain) 0px,
+      var(--paper-grain) 1px,
+      transparent 1px,
+      transparent 3px
+    ),
+    repeating-linear-gradient(
+      -45deg,
+      var(--paper-grain-2) 0px,
+      var(--paper-grain-2) 1px,
+      transparent 1px,
+      transparent 3px
+    );
   background-attachment: fixed;
   font-family: var(--font-sans-serif);
   display: flex;
@@ -133,19 +156,25 @@ a {
   min-width: 0;
   background: var(--color-bg-card);
   border: 1px solid var(--color-border-base);
-  box-shadow: var(--shadow-card);
+  border-radius: var(--card-radius);
   padding: 3rem 2.5rem;
   position: relative;
+  box-shadow:
+    0 1px 0 var(--emboss-highlight) inset,
+    0 2px 0 var(--card-edge),
+    0 18px 32px -12px rgba(71, 61, 64, 0.18),
+    0 2px 6px rgba(71, 61, 64, 0.06);
 }
 
 .card-blog::before {
   content: '';
   position: absolute;
-  top: 20px;
-  left: 20px;
-  right: 20px;
-  bottom: 20px;
+  inset: 14px;
   border: 1px solid var(--color-border-inner);
+  border-radius: 1px;
+  box-shadow:
+    inset 0 1px 1px var(--emboss-shadow),
+    0 1px 0 var(--emboss-highlight);
   pointer-events: none;
   z-index: 1;
 }
@@ -154,9 +183,44 @@ a {
   content: '';
   position: absolute;
   inset: 0;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)' opacity='0.08'/%3E%3C/svg%3E");
+  border-radius: var(--card-radius);
+  background: linear-gradient(
+    115deg,
+    transparent 0%,
+    rgba(255, 255, 255, 0.05) 42%,
+    rgba(255, 255, 255, 0.08) 50%,
+    rgba(255, 255, 255, 0.05) 58%,
+    transparent 100%
+  );
+  opacity: 0.6;
   pointer-events: none;
   z-index: 0;
+}
+
+:root[data-theme="dark"] .card-blog::after {
+  background: linear-gradient(
+    115deg,
+    transparent 0%,
+    rgba(201, 160, 140, 0.04) 45%,
+    rgba(232, 203, 175, 0.07) 50%,
+    rgba(201, 160, 140, 0.04) 55%,
+    transparent 100%
+  );
+  opacity: 1;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .card-blog::after {
+    background: linear-gradient(
+      115deg,
+      transparent 0%,
+      rgba(201, 160, 140, 0.04) 45%,
+      rgba(232, 203, 175, 0.07) 50%,
+      rgba(201, 160, 140, 0.04) 55%,
+      transparent 100%
+    );
+    opacity: 1;
+  }
 }
 
 .card-blog > * {
@@ -164,6 +228,9 @@ a {
   z-index: 2;
 }
 
+/* ============================================================
+   Header
+   ============================================================ */
 .blog-header {
   display: flex;
   justify-content: space-between;
@@ -183,6 +250,10 @@ a {
   text-transform: uppercase;
   color: var(--color-text-primary);
   font-family: var(--font-serif);
+  /* 凸版压印 */
+  text-shadow:
+    0 1px 0 var(--emboss-highlight),
+    0 -1px 0 var(--emboss-shadow);
   margin-bottom: 0.4rem;
 }
 
@@ -197,6 +268,9 @@ a {
   text-transform: uppercase;
 }
 
+/* ============================================================
+   卡片网格
+   ============================================================ */
 .blog-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -207,19 +281,27 @@ a {
 .blog-card {
   background: var(--color-bg-card-item);
   border: 1px solid var(--color-border-light);
+  border-radius: 1px;
   padding: 1.8rem 1.8rem 1.6rem 1.8rem;
-  transition: all 0.3s ease;
   display: flex;
   flex-direction: column;
-  box-shadow: var(--shadow-card-item);
   aspect-ratio: 1.75 / 1;
   max-height: 220px;
+  transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, background 0.25s ease;
+  box-shadow:
+    0 1px 0 var(--emboss-highlight) inset,
+    0 1px 2px rgba(71, 61, 64, 0.06),
+    0 4px 10px -4px rgba(71, 61, 64, 0.08);
 }
 
 .blog-card:hover {
   border-color: var(--color-text-accent);
   background: var(--color-bg-card-hover);
-  box-shadow: var(--shadow-card-hover);
+  transform: translateY(-2px);   /* 名片被拿起 */
+  box-shadow:
+    0 1px 0 var(--emboss-highlight) inset,
+    0 2px 3px rgba(71, 61, 64, 0.08),
+    0 14px 26px -8px rgba(71, 61, 64, 0.16);
 }
 
 .card-meta {
@@ -230,10 +312,11 @@ a {
   font-size: 0.65rem;
   text-transform: uppercase;
   letter-spacing: 0.2em;
-  color: var(--color-text-light);
   border-bottom: 1px solid var(--color-border-extra-light);
   padding-bottom: 0.75rem;
   font-weight: 400;
+  color: var(--color-text-accent);
+  font-family: var(--font-sans-serif);
 }
 
 .card-meta .date {
@@ -249,6 +332,9 @@ a {
   color: var(--color-text-primary);
   margin-bottom: 0.8rem;
   font-family: var(--font-serif);
+  text-shadow:
+    0 1px 0 var(--emboss-highlight),
+    0 -1px 0 var(--emboss-shadow);
 }
 
 .blog-card p {
@@ -274,7 +360,7 @@ a {
 }
 
 .blog-card a:hover {
-  border-bottom-color: var(--color-link-border-hover); 
+  border-bottom-color: var(--color-link-border-hover);
 }
 
 a:focus-visible,
@@ -292,17 +378,17 @@ button:focus-visible {
   border-top: 1px solid var(--color-border-extra-light);
   padding-top: 0.9rem;
   font-weight: 300;
+  color: var(--color-text-accent);
+  font-family: var(--font-sans-serif);
 }
 
 .card-footer span:first-child {
   color: var(--color-text-deep);
 }
 
-.card-meta, .card-footer, .blog-footer, .footer-left span, .footer-right {
-  color: var(--color-text-accent);
-  font-family: var(--font-sans-serif);
-}
-
+/* ============================================================
+   Footer
+   ============================================================ */
 .blog-footer {
   border-top: 1px solid var(--color-border-light);
   padding-top: 2rem;
@@ -315,16 +401,20 @@ button:focus-visible {
   font-size: 0.7rem;
   text-transform: uppercase;
   letter-spacing: 0.2em;
+  color: var(--color-text-accent);
+  font-family: var(--font-sans-serif);
 }
 
 .footer-left {
   display: flex;
   gap: 2rem;
   font-weight: 300;
+  color: var(--color-text-accent);
 }
 
 .footer-right {
   font-weight: 300;
+  color: var(--color-text-accent);
   border-left: 1px solid var(--color-border-light);
   padding-left: 2rem;
 }
@@ -344,6 +434,66 @@ button:focus-visible {
   background: var(--color-border-light);
 }
 
+/* ============================================================
+   烫金（仅暗色，小字用）
+   ============================================================ */
+:root[data-theme="dark"] .card-meta,
+:root[data-theme="dark"] .card-footer,
+:root[data-theme="dark"] .blog-footer,
+:root[data-theme="dark"] .footer-left,
+:root[data-theme="dark"] .footer-right {
+  color: transparent;
+  background: linear-gradient(180deg, var(--foil-from) 0%, var(--foil-mid) 55%, var(--foil-to) 100%);
+  -webkit-background-clip: text;
+  background-clip: text;
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .card-meta,
+  :root:not([data-theme="light"]) .card-footer,
+  :root:not([data-theme="light"]) .blog-footer,
+  :root:not([data-theme="light"]) .footer-left,
+  :root:not([data-theme="light"]) .footer-right {
+    color: transparent;
+    background: linear-gradient(180deg, var(--foil-from) 0%, var(--foil-mid) 55%, var(--foil-to) 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+  }
+}
+
+/* 暗色下压印高光/阴影已由变量切换，这里补卡片内部 inset 高光 */
+:root[data-theme="dark"] .blog-card {
+  box-shadow:
+    0 1px 0 var(--emboss-highlight) inset,
+    0 1px 2px rgba(0, 0, 0, 0.4),
+    0 4px 10px -4px rgba(0, 0, 0, 0.5);
+}
+
+:root[data-theme="dark"] .blog-card:hover {
+  box-shadow:
+    0 1px 0 var(--emboss-highlight) inset,
+    0 2px 3px rgba(0, 0, 0, 0.5),
+    0 14px 26px -8px rgba(0, 0, 0, 0.6);
+}
+
+@media (prefers-color-scheme: dark) {
+  :root:not([data-theme="light"]) .blog-card {
+    box-shadow:
+      0 1px 0 var(--emboss-highlight) inset,
+      0 1px 2px rgba(0, 0, 0, 0.4),
+      0 4px 10px -4px rgba(0, 0, 0, 0.5);
+  }
+  :root:not([data-theme="light"]) .blog-card:hover {
+    box-shadow:
+      0 1px 0 var(--emboss-highlight) inset,
+      0 2px 3px rgba(0, 0, 0, 0.5),
+      0 14px 26px -8px rgba(0, 0, 0, 0.6);
+  }
+}
+
+/* ============================================================
+   响应式
+   ============================================================ */
 @media (max-width: 800px) {
   .card-blog {
     padding: 2rem 1.5rem;
@@ -375,10 +525,7 @@ button:focus-visible {
 
 @media (max-width: 500px) {
   .card-blog::before {
-    top: 10px;
-    left: 10px;
-    right: 10px;
-    bottom: 10px;
+    inset: 10px;
   }
 
   .name-title h1 {
@@ -395,6 +542,9 @@ button:focus-visible {
   color: var(--color-selection-text);
 }
 
+/* ============================================================
+   主题切换按钮
+   ============================================================ */
 .theme-toggle {
   position: fixed;
   top: 1.5rem;
@@ -408,9 +558,12 @@ button:focus-visible {
   justify-content: center;
   background: var(--color-bg-card);
   border: 1px solid var(--color-border-base);
+  border-radius: 1px;
   color: var(--color-text-muted);
   cursor: pointer;
-  box-shadow: var(--shadow-card-item);
+  box-shadow:
+    0 1px 0 var(--emboss-highlight) inset,
+    0 1px 2px rgba(71, 61, 64, 0.06);
   transition: color 0.25s, border-color 0.25s, background 0.25s, transform 0.15s;
   will-change: transform;
   -webkit-tap-highlight-color: transparent;
@@ -420,7 +573,6 @@ button:focus-visible {
   color: var(--color-text-primary);
   border-color: var(--color-text-accent);
   background: var(--color-bg-card-hover);
-  box-shadow: var(--shadow-card-hover);   /* 瞬间切换，不参与过渡 */
 }
 
 .theme-toggle:active {
