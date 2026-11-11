@@ -45,6 +45,10 @@ $font-sans-serif: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sa
   --foil-mid: #B8935E;
   --foil-to: #D9B98C;
   --foil-enabled: 0;
+
+  /* 卡片尺寸变量，便于统一调整 */
+  --card-max-width: 385px;   /* = 220 × 1.75 */
+  --card-ratio: 1.75;
 }
 
 @mixin dark-vars {
@@ -128,7 +132,7 @@ body {
   display: flex;
   flex-direction: column;
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
   min-height: 100vh;
   padding: 2rem 1.5rem;
   color: var(--color-text-muted);
@@ -157,8 +161,9 @@ a {
   background: var(--color-bg-card);
   border: 1px solid var(--color-border-base);
   border-radius: var(--card-radius);
-  padding: 3rem 2.5rem;
+  padding: 3rem 2.5rem 3.5rem;
   position: relative;
+  overflow: visible;
   box-shadow:
     0 1px 0 var(--emboss-highlight) inset,
     0 2px 0 var(--card-edge),
@@ -250,7 +255,6 @@ a {
   text-transform: uppercase;
   color: var(--color-text-primary);
   font-family: var(--font-serif);
-  /* 凸版压印 */
   text-shadow:
     0 1px 0 var(--emboss-highlight),
     0 -1px 0 var(--emboss-shadow);
@@ -275,7 +279,12 @@ a {
   display: grid;
   grid-template-columns: 1fr;
   gap: 1.75rem;
-  margin-bottom: 3rem;
+  padding-bottom: 3rem;
+  min-width: 0;
+}
+
+.blog-grid > * {
+  min-width: 0;
 }
 
 .blog-card {
@@ -285,8 +294,16 @@ a {
   padding: 1.8rem 1.8rem 1.6rem 1.8rem;
   display: flex;
   flex-direction: column;
+
+  /* —— 灵活卡牌核心 ——
+     宽度上限 385px，但容器不足时收缩到 100%；
+     高度完全由宽度按 1.75:1 算出，不再用 max-height。
+     这样没有「max-height 反推宽度」的问题，卡片永远放得下。 */
+  width: 100%;
+  max-width: min(var(--card-max-width), 100%);
+  min-width: 0;
   aspect-ratio: 1.75 / 1;
-  max-height: 220px;
+
   transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease, background 0.25s ease;
   box-shadow:
     0 1px 0 var(--emboss-highlight) inset,
@@ -297,7 +314,7 @@ a {
 .blog-card:hover {
   border-color: var(--color-text-accent);
   background: var(--color-bg-card-hover);
-  transform: translateY(-2px);   /* 名片被拿起 */
+  transform: translateY(-2px);
   box-shadow:
     0 1px 0 var(--emboss-highlight) inset,
     0 2px 3px rgba(71, 61, 64, 0.08),
@@ -392,7 +409,7 @@ button:focus-visible {
 .blog-footer {
   border-top: 1px solid var(--color-border-light);
   padding-top: 2rem;
-  margin-top: 2rem;
+  margin-top: 0;
   display: flex;
   justify-content: space-between;
   align-items: center;
@@ -461,7 +478,6 @@ button:focus-visible {
   }
 }
 
-/* 暗色下压印高光/阴影已由变量切换，这里补卡片内部 inset 高光 */
 :root[data-theme="dark"] .blog-card {
   box-shadow:
     0 1px 0 var(--emboss-highlight) inset,
@@ -496,7 +512,7 @@ button:focus-visible {
    ============================================================ */
 @media (max-width: 800px) {
   .card-blog {
-    padding: 2rem 1.5rem;
+    padding: 2rem 1.5rem 2.5rem;
   }
 
   .name-title h1 {
@@ -505,6 +521,7 @@ button:focus-visible {
 
   .blog-grid {
     gap: 1.5rem;
+    padding-bottom: 2rem;
   }
 
   .blog-header {
@@ -521,6 +538,12 @@ button:focus-visible {
     border-left: none;
     padding-left: 0;
   }
+
+  /* 移动端：宽度直接由容器决定，去掉 385px 上限 */
+  .blog-card {
+    max-width: 100%;
+    padding: 1.2rem 1.2rem 1rem 1.2rem;
+  }
 }
 
 @media (max-width: 500px) {
@@ -528,13 +551,26 @@ button:focus-visible {
     inset: 10px;
   }
 
+  .card-blog {
+    padding: 1.5rem 1rem 2rem;
+  }
+
   .name-title h1 {
     font-size: 2rem;
   }
 
-  .blog-card {
-    padding: 1.3rem;
+  .blog-grid {
+    padding-bottom: 1.5rem;
   }
+
+  .blog-card {
+    padding: 1rem 1rem 0.9rem 1rem;
+  }
+
+  .blog-card h2 { font-size: 1.15rem; }
+  .blog-card p  { font-size: 0.9rem; }
+  .card-meta    { font-size: 0.58rem; letter-spacing: 0.14em; }
+  .card-footer  { font-size: 0.55rem; letter-spacing: 0.2em; }
 }
 
 ::selection {
