@@ -46,8 +46,7 @@ $font-sans-serif: -apple-system, BlinkMacSystemFont, 'PingFang SC', 'Hiragino Sa
   --foil-to: #D9B98C;
   --foil-enabled: 0;
 
-  /* 卡片尺寸变量，便于统一调整 */
-  --card-max-width: 385px;   /* = 220 × 1.75 */
+  --card-max-width: 385px;
   --card-ratio: 1.75;
 }
 
@@ -233,9 +232,6 @@ a {
   z-index: 2;
 }
 
-/* ============================================================
-   Header
-   ============================================================ */
 .blog-header {
   display: flex;
   justify-content: space-between;
@@ -272,9 +268,6 @@ a {
   text-transform: uppercase;
 }
 
-/* ============================================================
-   卡片网格
-   ============================================================ */
 .blog-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -295,10 +288,6 @@ a {
   display: flex;
   flex-direction: column;
 
-  /* —— 灵活卡牌核心 ——
-     宽度上限 385px，但容器不足时收缩到 100%；
-     高度完全由宽度按 1.75:1 算出，不再用 max-height。
-     这样没有「max-height 反推宽度」的问题，卡片永远放得下。 */
   width: 100%;
   max-width: min(var(--card-max-width), 100%);
   min-width: 0;
@@ -403,9 +392,6 @@ button:focus-visible {
   color: var(--color-text-deep);
 }
 
-/* ============================================================
-   Footer
-   ============================================================ */
 .blog-footer {
   border-top: 1px solid var(--color-border-light);
   padding-top: 2rem;
@@ -451,9 +437,6 @@ button:focus-visible {
   background: var(--color-border-light);
 }
 
-/* ============================================================
-   烫金（仅暗色，小字用）
-   ============================================================ */
 :root[data-theme="dark"] .card-meta,
 :root[data-theme="dark"] .card-footer,
 :root[data-theme="dark"] .blog-footer,
@@ -507,9 +490,6 @@ button:focus-visible {
   }
 }
 
-/* ============================================================
-   响应式
-   ============================================================ */
 @media (max-width: 800px) {
   .card-blog {
     padding: 2rem 1.5rem 2.5rem;
@@ -539,7 +519,6 @@ button:focus-visible {
     padding-left: 0;
   }
 
-  /* 移动端：宽度直接由容器决定，去掉 385px 上限 */
   .blog-card {
     max-width: 100%;
     padding: 1.2rem 1.2rem 1rem 1.2rem;
@@ -578,9 +557,6 @@ button:focus-visible {
   color: var(--color-selection-text);
 }
 
-/* ============================================================
-   主题切换按钮
-   ============================================================ */
 .theme-toggle {
   position: fixed;
   top: 1.5rem;
