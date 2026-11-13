@@ -11,8 +11,24 @@ layout: default
   </div>
 
   <h1 class="post-title">{{ page.title }}</h1>
-
-  <div class="post-content">
+  <p id="word-count" class="reading-meta"></p>
+  <div class="post-content" id="post-content">
     {{ content }}
   </div>
 </article>
+
+<script>
+(function () {
+  const el = document.querySelector('.post-content');
+  if (!el) return;
+
+  const clone = el.cloneNode(true);
+  clone.querySelectorAll('script, style, pre, code, sup[id^="fnref"]').forEach(n => n.remove());
+
+  const text = clone.textContent || '';
+  const count = (text.match(/[\u4e00-\u9fa5]/g) || []).length;
+
+  const out = document.getElementById('word-count');
+  if (out) out.textContent = `全文约 ${count} 字`;
+})();
+</script>
